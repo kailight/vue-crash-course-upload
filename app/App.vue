@@ -27,8 +27,8 @@ export default {
   data() {
     // This is the object we are working with
     return {
-      name : 'World',
-      greeting : 'Hola'
+      name : 'Alexander',
+      greeting : 'Hello'
     }
   }
 }
