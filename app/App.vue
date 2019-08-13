@@ -1,17 +1,17 @@
 <template>
-  <div id="app">
-    <div class="welcome wrapper">
-      <div class="welcome_image"></div>
-      <div class="welcome_message">Hi, I am {{Admin.name}}!</div>
-    </div>
-    <div class="form wrapper">
-      <div class="question">What is your name?</div>
-      <input class="username" type="text" v-model="User.name" />
-      <button @click="login()">✓</button>
-      <!--<div class="debug"><strong>User.name</strong> {{User.name}}</div>-->
-      <!--<div class="greeting" v-if="showGreeting">{{greeting}}, {{User.name}}!</div>-->
-    </div>
+<div id="app">
+  <div class="welcome wrapper">
+    <div class="welcome_image"></div>
+    <div class="welcome_message">Hi, I am {{Admin.name}}!</div>
   </div>
+  <div class="form wrapper">
+    <div class="question">What is your name?</div>
+    <input class="username" type="text"/>
+    <button>✓</button>
+    <!--<div class="debug"><strong>User.name</strong> {{User.name}}</div>-->
+    <!--<div class="greeting" v-if="showGreeting">{{greeting}}, {{User.name}}!</div>-->
+  </div>
+</div>
 </template>
 
 
