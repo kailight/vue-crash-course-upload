@@ -6,7 +6,7 @@
   </div>
   <div class="form wrapper">
     <div class="question">What is your name?</div>
-    <input class="username" type="text"/>
+    <input class="username" v-model="User.name" type="text"/>
     <button>✓</button>
     <!--<div class="debug"><strong>User.name</strong> {{User.name}}</div>-->
     <!--<div class="greeting" v-if="showGreeting">{{greeting}}, {{User.name}}!</div>-->
@@ -105,7 +105,8 @@ export default {
       greeting : 'Hello',
       showGreeting : false,
       User : {
-        name : ''
+        name : '',
+        agreesToConditions : false
       }
     }
   },
