@@ -1,6 +1,6 @@
-# Inspiration Vibes
+# Vue.JS Crash Course
 
-> Inspiration Vibes website
+> Vue.JS Crash Course - assets
 
 ## Build Setup
 
@@ -8,18 +8,11 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost
 npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
 ### Requirements/setup
-See Admin, +bug me to make install doc
 ```
-todo
+see the first video
 ```
