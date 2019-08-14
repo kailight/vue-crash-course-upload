@@ -7,9 +7,24 @@
   <div class="form wrapper">
     <div class="question">What is your name?</div>
     <input class="username" v-model="User.name" type="text"/>
-    <button>✓</button>
+    <button @click="login">✓</button>
     <!--<div class="debug"><strong>User.name</strong> {{User.name}}</div>-->
-    <!--<div class="greeting" v-if="showGreeting">{{greeting}}, {{User.name}}!</div>-->
+    <div class="greeting" v-if="showGreeting">{{greeting}}, {{User.name}}!</div>
+    <div>
+      <a href="#" @click="activeTab = 1">Tab 1</a>
+      <a href="#" @click="activeTab = 2">Tab 2</a>
+      <a href="#" @click="activeTab = 3">Tab 3</a>
+    </div>
+    <div v-if="activeTab == 1">
+      Tab 1 content
+    </div>
+    <div v-if="activeTab == 2">
+      Tab 2 content
+    </div>
+    <div v-if="activeTab == 3">
+      Tab 3 content
+    </div>
+    <div class="content" v-if="User.loggedIn">Our secret content</div>
   </div>
 </div>
 </template>
@@ -102,9 +117,11 @@ export default {
       Admin : {
         name : 'Alexander',
       },
+      activeTab : 0,
       greeting : 'Hello',
       showGreeting : false,
       User : {
+        loggenIn : false,
         name : '',
         agreesToConditions : false
       }
@@ -113,7 +130,10 @@ export default {
   methods: {
     login() {
       console.info('login()')
-      this.showGreeting = true
+      if (this.User.name.length > 3) {
+        this.showGreeting = true
+        this.User.loggedIn = true
+      }
     }
   }
 }
