@@ -10,21 +10,27 @@
     <button @click="login">✓</button>
     <!--<div class="debug"><strong>User.name</strong> {{User.name}}</div>-->
     <div class="greeting" v-if="showGreeting">{{greeting}}, {{User.name}}!</div>
-    <div>
-      <a href="#" @click="activeTab = 1">Tab 1</a>
-      <a href="#" @click="activeTab = 2">Tab 2</a>
-      <a href="#" @click="activeTab = 3">Tab 3</a>
+
+    <div class="content" v-if="User.loggedIn">Our secret content</div>
+  </div>
+  <div class="tabs-wrapper tabs">
+    <div class="tab-controls">
+      <a href="#" @click.prevent="activeTab = 1">Tab 1</a>
+      <a href="#" @click.prevent="activeTab = 2">Tab 2</a>
+      <a href="#" @click.prevent="activeTab = 3">Tab 3</a>
     </div>
-    <div v-if="activeTab == 1">
+    <div class="tab-content" v-if="!activeTab">
+      No content
+    </div>
+    <div class="tab-content" v-if="activeTab === 1">
       Tab 1 content
     </div>
-    <div v-if="activeTab == 2">
+    <div class="tab-content" v-if="activeTab === 2">
       Tab 2 content
     </div>
-    <div v-if="activeTab == 3">
+    <div class="tab-content" v-if="activeTab === 3">
       Tab 3 content
     </div>
-    <div class="content" v-if="User.loggedIn">Our secret content</div>
   </div>
 </div>
 </template>
@@ -105,6 +111,37 @@
 .form .greeting {
   margin-top: 0.8rem;
 }
+
+
+/* TABS */
+.tabs-wrapper {
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+}
+
+.tab-controls {
+  padding: 0 1rem;
+}
+
+.tab-controls a {
+  padding: 0.3rem 1rem;
+  line-height: 1.5rem;
+  color : #fff;
+  border: 1px solid #a9463a;
+  background-color: #a9463a;
+  border-bottom: 0;
+  text-decoration: none;
+  border-radius: 0.7rem 0.7rem 0 0;
+  font-size: 0.8rem;
+}
+
+.tab-content {
+  text-align: center;
+  padding: 2rem;
+  border: 1px solid #a9463a;
+  min-height: 10rem;
+}
+
 </style>
 
 
