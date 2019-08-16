@@ -4,32 +4,35 @@
     <div class="welcome_image"></div>
     <div class="welcome_message">Hi, I am {{Admin.name}}!</div>
   </div>
-  <div class="form wrapper">
+  <div v-if="!User.haveBeenTryingToLogin" class="form wrapper">
     <div class="question">What is your name?</div>
     <input class="username" v-model="User.name" type="text"/>
     <button @click="login">✓</button>
     <!--<div class="debug"><strong>User.name</strong> {{User.name}}</div>-->
-    <div class="greeting" v-if="showGreeting">{{greeting}}, {{User.name}}!</div>
+    <!--<div class="greeting" v-if="showGreeting">{{greeting}}, {{User.name}}!</div>-->
 
-    <div class="content" v-if="User.loggedIn">Our secret content</div>
+    <!--<div class="content" v-if="User.loggedIn">Our secret content</div>-->
   </div>
+
+
   <div class="tabs-wrapper tabs">
-    <div class="tab-controls">
-      <a href="#" @click.prevent="activeTab = 1">Tab 1</a>
-      <a href="#" @click.prevent="activeTab = 2">Tab 2</a>
-      <a href="#" @click.prevent="activeTab = 3">Tab 3</a>
+    <div class="tab-content" v-if="!User.loggedIn && User.haveBeenTryingToLogin">
+      {{greeting}}, {{User.name}}!
+      <br><br><br><br>
+      <div style="float: left; padding: 2rem">I am a musician.</div>
+      <div style="float: left; padding: 2rem">I like kitties.</div>
+      <div style="float: left; padding: 2rem">I like cookies.</div>
+      <br><br><br><br><br>
+      <div>You can contact me via email: user@site.com</div>
     </div>
-    <div class="tab-content" v-if="!activeTab">
-      No content
+    <div class="tab-content" v-if="User.loggedIn && User.name === 'neo66'">
+      Content for neo66
     </div>
-    <div class="tab-content" v-if="activeTab === 1">
-      Tab 1 content
+    <div class="tab-content" v-if="User.loggedIn && User.name === 'Mark'">
+      Content for Mark
     </div>
-    <div class="tab-content" v-if="activeTab === 2">
-      Tab 2 content
-    </div>
-    <div class="tab-content" v-if="activeTab === 3">
-      Tab 3 content
+    <div class="tab-content" v-if="User.loggedIn && User.name === 'Ivan'">
+      Content for Ivan
     </div>
   </div>
 </div>
@@ -147,6 +150,8 @@
 
 
 <script>
+var Users = ['neo66','Mark','Ivan']
+
 export default {
   data() {
     // This is the object we are working with
@@ -158,10 +163,12 @@ export default {
       greeting : 'Hello',
       showGreeting : false,
       User : {
-        loggenIn : false,
+        haveBeenTryingToLogin : false,
+        loggedIn : false,
         name : '',
         agreesToConditions : false
-      }
+      },
+      knownUser : false
     }
   },
   methods: {
@@ -169,7 +176,10 @@ export default {
       console.info('login()')
       if (this.User.name.length > 3) {
         this.showGreeting = true
-        this.User.loggedIn = true
+        this.User.haveBeenTryingToLogin = true
+        if (Users.indexOf(this.User.name) > - 1) {
+          this.User.loggedIn = true
+        }
       }
     }
   }
