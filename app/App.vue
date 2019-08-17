@@ -31,12 +31,10 @@
     </div>
     <content-for-neo class="tab-content" v-if="loggedInAs('neo66')">
     </content-for-neo>
-    <div class="tab-content" v-if="loggedInAs('Mark')">
-      Content for Mark
-    </div>
-    <div class="tab-content" v-if="loggedInAs('Ivan')">
-      Content for Ivan
-    </div>
+    <content-for-gf class="tab-content" v-if="loggedInAs('gf66')">
+    </content-for-gf>
+    <content-for-mom class="tab-content" v-if="loggedInAs('mom77')">
+    </content-for-mom>
   </div>
 
 </div>
@@ -216,11 +214,15 @@ a {
 <script>
 var Users = ['neo66','Mark','Ivan']
 
-import Neo66 from './Neo66.vue'
+import ContentForNeo from './Neo.vue'
+import ContentForGF from './GF.vue'
+import ContentForMom from './Mom.vue'
 
 export default {
   components : {
-    'content-for-neo' : Neo66,
+    'content-for-neo' : ContentForNeo,
+    'content-for-gf' : ContentForGF,
+    'content-for-mom' : ContentForMom,
   },
   data() {
     // This is the object we are working with
