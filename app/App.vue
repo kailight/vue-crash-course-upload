@@ -7,7 +7,7 @@
   </div>
   <div v-if="!User.haveBeenTryingToLogin" class="form wrapper">
     <div class="question">What is your name?</div>
-    <input class="username" v-model="User.name" type="text"/>
+    <input class="username" v-model="User.name" :type="getInputType()"/>
     <button @click="login">✓</button>
     <!--<div class="debug"><strong>User.name</strong> {{User.name}}</div>-->
   </div>
@@ -18,28 +18,10 @@
       <div class="message1">{{User.name}}? Nice to meet you!</div>
       <div class="message2"><a href="#skills">Let me tell you more about things I crave</a></div>
       <div class="skills" id="skills">
-        <div class="skill">
-          <div class="title">Music</div>
-          <div class="image" :style="{ 'background-image' : `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmY8b8oXw0ZLL0pOG-xBs3y46psTYhW7oiyqTusJ2wsqwio5SX')` } "/>
-          <div class="description">
-            <p>I play guitar in a rock band.</p>
-            <p>Our next gig going to be on sunday. Jump in!</p>
-          </div>
-        </div>
-        <div class="skill">
-          <div class="title">Cats</div>
-          <div class="image" style="background-image : url('https://cdn.pixabay.com/photo/2018/08/06/22/35/siamese-cat-3588544__340.jpg')" />
-          <div class="description">
-            <p>Proud owner of 2 siamese kittens.<p>
-            <p>Should I mention they are twins?</p>
-          </div>
-        </div>
-        <div class="skill">
-          <div class="title">Snowboarding</div>
-          <div class="image" style="background-image : url('https://cdn.pixabay.com/photo/2018/02/23/17/56/snowboarding-3176182_960_720.jpg')" />
-          <div class="description">
-            <p>Snowboarding is my passion!</p>
-            <p>Waiting for the snow every year.</p>
+        <div class="skill" v-for="skill in Skills">
+          <div class="title">{{skill.title}}</div>
+          <div class="image" :style="skill.style"/>
+          <div class="description" v-html="skill.description">
           </div>
         </div>
       </div>
@@ -239,6 +221,7 @@ export default {
   data() {
     // This is the object we are working with
     return {
+      password : true,
       Admin : {
         name : 'Alexander',
       },
@@ -249,6 +232,32 @@ export default {
         agreesToConditions : false
       },
       showGreeting : false,
+      Skills : [
+        {
+          title : 'Music',
+          style : "background-image : url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmY8b8oXw0ZLL0pOG-xBs3y46psTYhW7oiyqTusJ2wsqwio5SX')",
+          description : `
+<p>I play guitar in a rock band.</p>
+<p>Our next gig going to be on sunday. Jump in!</p>
+`
+        },
+        {
+          title : 'Cats',
+          style : "background-image : url('https://cdn.pixabay.com/photo/2018/08/06/22/35/siamese-cat-3588544__340.jpg')",
+          description : `
+<p>Proud owner of 2 siamese kittens.<p>
+<p>Should I mention they are twins?</p>
+`
+        },
+        {
+          title : 'Snowboarding',
+          style : "background-image : url('https://cdn.pixabay.com/photo/2018/02/23/17/56/snowboarding-3176182_960_720.jpg')",
+          description : `
+<p>Snowboarding is my passion!</p>
+<p>Waiting for the snow every year.</p>
+`
+        },
+      ]
     }
   },
   methods: {
@@ -271,6 +280,9 @@ export default {
     },
     failedToLogin() {
       return !this.User.loggedIn && this.User.haveBeenTryingToLogin
+    },
+    getInputType() {
+      return this.password === true ? 'password' : 'text'
     }
   }
 }
