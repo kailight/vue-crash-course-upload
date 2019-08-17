@@ -1,5 +1,6 @@
 <template>
 <div id="app">
+
   <div class="welcome wrapper">
     <div class="welcome_image"></div>
     <div class="welcome_message">Hi, I am {{Admin.name}}!</div>
@@ -16,25 +17,50 @@
 
 
   <div class="tabs-wrapper tabs">
-    <div class="tab-content" v-if="!User.loggedIn && User.haveBeenTryingToLogin">
-      {{greeting}}, {{User.name}}!
-      <br><br><br><br>
-      <div style="float: left; padding: 2rem">I am a musician.</div>
-      <div style="float: left; padding: 2rem">I like kitties.</div>
-      <div style="float: left; padding: 2rem">I like cookies.</div>
-      <br><br><br><br><br>
-      <div>You can contact me via email: user@site.com</div>
+    <div class="tab-content unknown_user" v-if="failedToLogin()">
+      <div class="message1">{{User.name}}? Nice to meet you!</div>
+      <div class="message2"><a href="#skills">Let me tell you more about things I crave</a></div>
+      <div class="skills" id="skills">
+        <div class="skill">
+          <div class="title">Music</div>
+          <div class="image" :style="{ 'background-image' : `url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmY8b8oXw0ZLL0pOG-xBs3y46psTYhW7oiyqTusJ2wsqwio5SX')` } "/>
+          <div class="description">
+            <p>I play guitar in a rock band.</p>
+            <p>Our next gig going to be on sunday. Jump in!</p>
+          </div>
+        </div>
+        <div class="skill">
+          <div class="title">Cats</div>
+          <div class="image" style="background-image : url('https://cdn.pixabay.com/photo/2018/08/06/22/35/siamese-cat-3588544__340.jpg')" />
+          <div class="description">
+            <p>Proud owner of 2 siamese kittens.<p>
+            <p>Should I mention they are twins?</p>
+          </div>
+        </div>
+        <div class="skill">
+          <div class="title">Snowboarding</div>
+          <div class="image" style="background-image : url('https://cdn.pixabay.com/photo/2018/02/23/17/56/snowboarding-3176182_960_720.jpg')" />
+          <div class="description">
+            <p>Snowboarding is my passion!</p>
+            <p>Waiting for the snow every year.</p>
+          </div>
+        </div>
+      </div>
+      <div class="contacts">
+        Drop me a message via email: <a href="mailto:user@site.com">user@site.com</a>
+      </div>
     </div>
-    <div class="tab-content" v-if="User.loggedIn && User.name === 'neo66'">
+    <div class="tab-content" v-if="loggedInAs('neo66')">
       Content for neo66
     </div>
-    <div class="tab-content" v-if="User.loggedIn && User.name === 'Mark'">
+    <div class="tab-content" v-if="loggedInAs('Mark')">
       Content for Mark
     </div>
-    <div class="tab-content" v-if="User.loggedIn && User.name === 'Ivan'">
+    <div class="tab-content" v-if="loggedInAs('Ivan')">
       Content for Ivan
     </div>
   </div>
+
 </div>
 </template>
 
@@ -42,9 +68,13 @@
 
 <style>
 #app {
-  font-family : Arial, sans-serif;
+  font-family : Arial, Helvetica, sans-serif;
+  color: #333;
 }
 
+a {
+  color : #a9463a;
+}
 
 .welcome {
   font-size : 2rem;
@@ -66,8 +96,65 @@
 }
 
 .welcome_message {
+}
+
+.unknown_user {
 
 }
+
+.unknown_user .message1 {
+  font-size: 1.4rem;
+}
+
+.unknown_user .message2 {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+}
+
+.unknown_user .message2 a {
+  text-decoration: none;
+}
+
+.unknown_user .skills {
+  margin: 4rem auto 2rem auto;
+  display: flex;
+  clear: both;
+  max-width: 800px;
+}
+
+.unknown_user .skills .skill {
+  display: inline-block;
+  width: 33%;
+  max-width: 33%;
+  padding: 0.7rem;
+  /*border: 1px solid darksalmon;*/
+}
+
+.unknown_user .skills .skill .title {
+  color: #000;
+  font-size: 1.2rem;
+}
+
+.unknown_user .skills .skill .description {
+  font-size: 0.8rem;
+  text-align: left;
+}
+
+.unknown_user .skills .skill .image {
+  margin-top: 1rem;
+  padding-top: 70%;
+  background-position: center;
+  background-size: cover;
+  border: 1px solid #666;
+  /*border-radius: 0.4rem;*/
+}
+
+.unknown_user .contacts {
+  clear: both;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+}
+
 
 .wrapper {
   /*border: 1px solid darkred;*/
@@ -118,7 +205,7 @@
 
 /* TABS */
 .tabs-wrapper {
-  margin-top: 3rem;
+  margin-top: 5rem;
   margin-bottom: 5rem;
 }
 
@@ -140,8 +227,7 @@
 
 .tab-content {
   text-align: center;
-  padding: 2rem;
-  border: 1px solid #a9463a;
+  padding: 1rem;
   min-height: 10rem;
 }
 
@@ -159,16 +245,13 @@ export default {
       Admin : {
         name : 'Alexander',
       },
-      activeTab : 0,
-      greeting : 'Hello',
-      showGreeting : false,
       User : {
         haveBeenTryingToLogin : false,
         loggedIn : false,
         name : '',
         agreesToConditions : false
       },
-      knownUser : false
+      showGreeting : false,
     }
   },
   methods: {
@@ -181,6 +264,16 @@ export default {
           this.User.loggedIn = true
         }
       }
+    },
+    loggedInAs(username) {
+      if (this.User.loggedIn && this.User.name === username) {
+        return true
+      } else {
+        return false
+      }
+    },
+    failedToLogin() {
+      return !this.User.loggedIn && this.User.haveBeenTryingToLogin
     }
   }
 }
