@@ -212,7 +212,7 @@ a {
 
 
 <script>
-var Users = ['neo66','Mark','Ivan']
+let Users = ['neo66','Mark','Ivan']
 
 import ContentForNeo from './Neo.vue'
 import ContentForGF from './GF.vue'
