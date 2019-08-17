@@ -29,9 +29,8 @@
         Drop me a message via email: <a href="mailto:user@site.com">user@site.com</a>
       </div>
     </div>
-    <div class="tab-content" v-if="loggedInAs('neo66')">
-      Content for neo66
-    </div>
+    <content-for-neo class="tab-content" v-if="loggedInAs('neo66')">
+    </content-for-neo>
     <div class="tab-content" v-if="loggedInAs('Mark')">
       Content for Mark
     </div>
@@ -217,7 +216,12 @@ a {
 <script>
 var Users = ['neo66','Mark','Ivan']
 
+import Neo66 from './Neo66.vue'
+
 export default {
+  components : {
+    'content-for-neo' : Neo66,
+  },
   data() {
     // This is the object we are working with
     return {
