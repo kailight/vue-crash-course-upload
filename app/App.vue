@@ -10,9 +10,6 @@
     <input class="username" v-model="User.name" type="text"/>
     <button @click="login">✓</button>
     <!--<div class="debug"><strong>User.name</strong> {{User.name}}</div>-->
-    <!--<div class="greeting" v-if="showGreeting">{{greeting}}, {{User.name}}!</div>-->
-
-    <!--<div class="content" v-if="User.loggedIn">Our secret content</div>-->
   </div>
 
 
