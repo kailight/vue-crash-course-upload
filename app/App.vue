@@ -7,7 +7,7 @@
   </div>
   <div v-if="!User.haveBeenTryingToLogin" class="form wrapper">
     <div class="question">What is your name?</div>
-    <input class="username" v-model="User.name" :type="getInputType()"/>
+    <input class="username" v-model="User.name" type="text" />
     <button @click="login">✓</button>
     <!--<div class="debug"><strong>User.name</strong> {{User.name}}</div>-->
   </div>
@@ -281,9 +281,6 @@ export default {
     failedToLogin() {
       return !this.User.loggedIn && this.User.haveBeenTryingToLogin
     },
-    getInputType() {
-      return this.password === true ? 'password' : 'text'
-    }
   }
 }
 </script>
