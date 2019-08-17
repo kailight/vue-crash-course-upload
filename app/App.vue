@@ -12,19 +12,12 @@
     <!--<div class="debug"><strong>User.name</strong> {{User.name}}</div>-->
   </div>
 
-
   <div class="tabs-wrapper tabs">
     <div class="tab-content unknown_user" v-if="failedToLogin()">
       <div class="message1">{{User.name}}? Nice to meet you!</div>
       <div class="message2"><a href="#skills">Let me tell you more about things I like</a></div>
-      <div class="skills" id="skills">
-        <div class="skill" v-for="skill in Skills">
-          <div class="title">{{skill.title}}</div>
-          <div class="image" :style="skill.style"/>
-          <div class="description" v-html="skill.description">
-          </div>
-        </div>
-      </div>
+      <skills :skills="Skills">
+      </skills>
       <div class="contacts">
         Drop me a message via email: <a href="mailto:user@site.com">user@site.com</a>
       </div>
@@ -89,40 +82,6 @@ a {
 
 .unknown_user .message2 a {
   text-decoration: none;
-}
-
-.unknown_user .skills {
-  margin: 4rem auto 2rem auto;
-  display: flex;
-  clear: both;
-  max-width: 800px;
-}
-
-.unknown_user .skills .skill {
-  display: inline-block;
-  width: 33%;
-  max-width: 33%;
-  padding: 0.7rem;
-  /*border: 1px solid darksalmon;*/
-}
-
-.unknown_user .skills .skill .title {
-  color: #000;
-  font-size: 1.2rem;
-}
-
-.unknown_user .skills .skill .description {
-  font-size: 0.8rem;
-  text-align: left;
-}
-
-.unknown_user .skills .skill .image {
-  margin-top: 1rem;
-  padding-top: 70%;
-  background-position: center;
-  background-size: cover;
-  border: 1px solid #666;
-  /*border-radius: 0.4rem;*/
 }
 
 .unknown_user .contacts {
@@ -217,12 +176,14 @@ let Users = ['neo66','Mark','Ivan']
 import ContentForNeo from './Neo.vue'
 import ContentForGF from './GF.vue'
 import ContentForMom from './Mom.vue'
+import Skills from './Skills.vue'
 
 export default {
   components : {
     'content-for-neo' : ContentForNeo,
     'content-for-gf' : ContentForGF,
     'content-for-mom' : ContentForMom,
+    'skills' : Skills,
   },
   data() {
     // This is the object we are working with
