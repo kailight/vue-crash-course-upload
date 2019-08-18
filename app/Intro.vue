@@ -85,31 +85,25 @@
 <script>
 export default {
   props : {
-    Admin: Object,
     User: Object,
-    Users: Array
   },
   data() {
     // This is the object we are working with
     return {
+      Admin : {
+        name : 'Alexander',
+      },
     }
   },
   methods: {
+    login() {
+      this.$emit('login')
+    },
     loggedInAs(username) {
       if (this.User.loggedIn && this.User.name === username) {
         return true
       } else {
         return false
-      }
-    },
-    login() {
-      console.info('login()')
-      if (this.User.name.length > 3) {
-        this.showGreeting = true
-        this.User.haveBeenTryingToLogin = true
-        if (this.Users.indexOf(this.User.name) > - 1) {
-          this.User.loggedIn = true
-        }
       }
     },
     failedToLogin() {
