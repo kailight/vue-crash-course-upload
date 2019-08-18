@@ -1,34 +1,8 @@
 <template>
 <div id="app">
 
-  <div class="welcome wrapper">
-    <div class="welcome_image"></div>
-    <div class="welcome_message">Hi, I am {{Admin.name}}!</div>
-  </div>
-  <div v-if="!User.haveBeenTryingToLogin" class="form wrapper">
-    <div class="question">What is your name?</div>
-    <input class="username" v-model="User.name" type="text" />
-    <button @click="login">✓</button>
-    <!--<div class="debug"><strong>User.name</strong> {{User.name}}</div>-->
-  </div>
-
-  <div class="tabs-wrapper tabs">
-    <div class="tab-content unknown_user" v-if="failedToLogin()">
-      <div class="message1">{{User.name}}? Nice to meet you!</div>
-      <div class="message2"><a href="#skills">Let me tell you more about things I like</a></div>
-      <skills :skills="Skills">
-      </skills>
-      <div class="contacts">
-        Drop me a message via email: <a href="mailto:user@site.com">user@site.com</a>
-      </div>
-    </div>
-    <content-for-neo class="tab-content" v-if="loggedInAs('neo66')">
-    </content-for-neo>
-    <content-for-gf class="tab-content" v-if="loggedInAs('gf66')">
-    </content-for-gf>
-    <content-for-mom class="tab-content" v-if="loggedInAs('mom77')">
-    </content-for-mom>
-  </div>
+  <intro :User="User" :Users="Users" :Admin="Admin"></intro>
+  <content2 :User="User" :Users="Users" :Skills="Skills"></content2>
 
 </div>
 </template>
@@ -45,127 +19,6 @@ a {
   color : #a9463a;
 }
 
-.welcome {
-  font-size : 2rem;
-  color : #333;
-  text-align : center;
-  margin: 4rem auto 2rem auto;
-  width: 100%;
-}
-
-.welcome_image {
-  height: 12rem;
-  width: 12rem;
-  border-radius: 8rem;
-  margin: 1rem auto;
-  background-image: url('https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=375&w=630');
-  background-size: cover;
-  background-position: 50%;
-  border: 1px solid #a9463a;
-}
-
-.welcome_message {
-}
-
-.unknown_user {
-
-}
-
-.unknown_user .message1 {
-  font-size: 1.4rem;
-}
-
-.unknown_user .message2 {
-  margin-top: 0.8rem;
-  font-size: 0.8rem;
-}
-
-.unknown_user .message2 a {
-  text-decoration: none;
-}
-
-.unknown_user .contacts {
-  clear: both;
-  margin-top: 2rem;
-  font-size: 0.8rem;
-}
-
-
-.wrapper {
-  /*border: 1px solid darkred;*/
-}
-
-.form {
-  margin : auto;
-  text-align: center;
-  padding: 1rem;
-}
-
-.form .question {
-  margin: 1rem auto;
-  font-size: 0.8rem;
-}
-
-.form .debug {
-  font-size: 0.8rem;
-  margin: 0.5rem;
-}
-
-.form button {
-  font-size: 0.8rem;
-  padding: 0.5rem 0.8rem;
-  border-radius: 0 0.5rem 0.5rem 0;
-  margin-left: -2.3rem;
-  border: 0px solid #a9463a;
-  background-color: #a9463a;
-  color: white;
-  outline: none;
-  cursor: pointer;
-}
-
-.form input.username {
-  height: 1.4rem;
-  width: 16rem;
-  padding: 0.2rem 0.6rem;
-  font-size: 0.8rem;
-  border-radius: 0.6rem;
-  border: 1px solid #a9463a;
-  outline: none;
-}
-
-.form .greeting {
-  margin-top: 0.8rem;
-}
-
-
-/* TABS */
-.tabs-wrapper {
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-}
-
-.tab-controls {
-  padding: 0 1rem;
-}
-
-.tab-controls a {
-  padding: 0.3rem 1rem;
-  line-height: 1.5rem;
-  color : #fff;
-  border: 1px solid #a9463a;
-  background-color: #a9463a;
-  border-bottom: 0;
-  text-decoration: none;
-  border-radius: 0.7rem 0.7rem 0 0;
-  font-size: 0.8rem;
-}
-
-.tab-content {
-  text-align: center;
-  padding: 1rem;
-  min-height: 10rem;
-}
-
 </style>
 
 
@@ -173,17 +26,14 @@ a {
 <script>
 let Users = ['neo66','Mark','Ivan']
 
-import ContentForNeo from './Neo.vue'
-import ContentForGF from './GF.vue'
-import ContentForMom from './Mom.vue'
-import Skills from './Skills.vue'
+import Intro from './Intro.vue'
+import Content from './Content.vue'
+
 
 export default {
   components : {
-    'content-for-neo' : ContentForNeo,
-    'content-for-gf' : ContentForGF,
-    'content-for-mom' : ContentForMom,
-    'skills' : Skills,
+    'intro' : Intro,
+    'content2' : Content,
   },
   data() {
     // This is the object we are working with
@@ -198,6 +48,7 @@ export default {
         name : '',
         agreesToConditions : false
       },
+      Users : Users,
       showGreeting : false,
       Skills : [
         {
@@ -228,26 +79,6 @@ export default {
     }
   },
   methods: {
-    login() {
-      console.info('login()')
-      if (this.User.name.length > 3) {
-        this.showGreeting = true
-        this.User.haveBeenTryingToLogin = true
-        if (Users.indexOf(this.User.name) > - 1) {
-          this.User.loggedIn = true
-        }
-      }
-    },
-    loggedInAs(username) {
-      if (this.User.loggedIn && this.User.name === username) {
-        return true
-      } else {
-        return false
-      }
-    },
-    failedToLogin() {
-      return !this.User.loggedIn && this.User.haveBeenTryingToLogin
-    },
   }
 }
 </script>
