@@ -1,12 +1,9 @@
-<template>
-<div class="skills" id="skills">
-  <div class="skill" v-for="skill in Skills">
-    <div class="title">{{skill.title}}</div>
-    <div class="image" :style="skill.style"/>
-    <div class="description" v-html="skill.description">
-    </div>
-  </div>
-</div>
+<template lang="pug">
+#skills.skills
+  .skill(v-for='skill in Skills')
+    .title {{skill.title}}
+    .image(:style='skill.style')
+    .description(v-html='skill.description')
 </template>
 
 
