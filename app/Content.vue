@@ -1,6 +1,6 @@
 <template>
-  <div class="tabs-wrapper tabs">
-    <div class="tab-content unknown_user" v-if="failedToLogin()">
+  <div class="content tabs">
+    <div class="tab content" v-if="failedToLogin()">
       <div class="message1">{{User.name}}? Nice to meet you!</div>
       <div class="message2"><a href="#skills">Let me tell you more about things I like</a></div>
       <skills :skills="Skills">
@@ -9,69 +9,40 @@
         Drop me a message via email: <a href="mailto:user@site.com">user@site.com</a>
       </div>
     </div>
-    <content-for-neo class="tab-content" v-if="loggedInAs('neo66')">
+    <content-for-neo class="tab" v-if="loggedInAs('neo66')">
     </content-for-neo>
-    <content-for-gf class="tab-content" v-if="loggedInAs('gf66')">
+    <content-for-gf class="tab" v-if="loggedInAs('gf66')">
     </content-for-gf>
-    <content-for-mom class="tab-content" v-if="loggedInAs('mom77')">
+    <content-for-mom class="tab" v-if="loggedInAs('mom77')">
     </content-for-mom>
   </div>
 </template>
 
 <style>
-.unknown_user {
+.content {
 
 }
 
-.unknown_user .message1 {
+.content .message1 {
   font-size: 1.4rem;
 }
 
-.unknown_user .message2 {
+.content .message2 {
   margin-top: 0.8rem;
   font-size: 0.8rem;
 }
 
-.unknown_user .message2 a {
+.content .message2 a {
   text-decoration: none;
 }
 
-.unknown_user .contacts {
+.content .contacts {
   clear: both;
   margin-top: 2rem;
   font-size: 0.8rem;
 }
 
-
-.wrapper {
-  /*border: 1px solid darkred;*/
-}
-
-
-
-/* TABS */
-.tabs-wrapper {
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-}
-
-.tab-controls {
-  padding: 0 1rem;
-}
-
-.tab-controls a {
-  padding: 0.3rem 1rem;
-  line-height: 1.5rem;
-  color : #fff;
-  border: 1px solid #a9463a;
-  background-color: #a9463a;
-  border-bottom: 0;
-  text-decoration: none;
-  border-radius: 0.7rem 0.7rem 0 0;
-  font-size: 0.8rem;
-}
-
-.tab-content {
+.tab {
   text-align: center;
   padding: 1rem;
   min-height: 10rem;
