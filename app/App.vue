@@ -1,25 +1,21 @@
-<template>
-<div id="app">
-
-  <intro :User="User" @login="login()"></intro>
-  <content2 :User="User"></content2>
-
-</div>
+<template lang="pug">
+#div
+  intro(:User="User" @login="login()")
+  content2(:User="User")
 </template>
 
 
 
-<style>
+<style lang="stylus">
 @import url('https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap');
 
-#app {
-  font-family : 'Lexend Deca', Arial, Helvetica, sans-serif;
-  color: #333;
-}
+body
+  color $color-main
+  font-family 'Lexend Deca', Arial, Helvetica, sans-serif
 
-a {
-  color : #a9463a;
-}
+a
+  color #a9463a
+
 </style>
 
 

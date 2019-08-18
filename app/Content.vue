@@ -18,35 +18,23 @@
   </div>
 </template>
 
-<style>
-.content {
-
-}
-
-.content .message1 {
-  font-size: 1.4rem;
-}
-
-.content .message2 {
-  margin-top: 0.8rem;
-  font-size: 0.8rem;
-}
-
-.content .message2 a {
-  text-decoration: none;
-}
-
-.content .contacts {
-  clear: both;
-  margin-top: 2rem;
-  font-size: 0.8rem;
-}
-
-.tab {
-  text-align: center;
-  padding: 1rem;
-  min-height: 10rem;
-}
+<style lang="stylus">
+.content
+  .message1
+    font-size 1.4rem
+  .message2
+    margin-top 0.8rem
+    font-size 0.8rem
+    a
+      text-decoration none
+  .contacts
+    clear both
+    margin-top 2rem
+    font-size 0.8rem
+.tab
+  text-align center
+  padding 1rem
+  min-height 10rem
 </style>
 
 
