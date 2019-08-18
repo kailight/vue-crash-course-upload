@@ -1,11 +1,10 @@
-<template>
-<div>
-  Hello, my friend Neo 66.
-</div>
+<template lang="pug">
+div
+  | Hi Mom.
 </template>
 
 
-<style>
+<style lang="stylus">
 
 </style>
 

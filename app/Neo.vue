@@ -1,7 +1,6 @@
-<template>
-<div>
-  Hello, my friend Neo 66.
-</div>
+<template lang="pug">
+div
+  | Hello, my friend Neo 66.
 </template>
 
 

@@ -1,21 +1,16 @@
-<template>
-  <div class="content tabs">
-    <div class="tab content" v-if="failedToLogin()">
-      <div class="message1">{{User.name}}? Nice to meet you!</div>
-      <div class="message2"><a href="#skills">Let me tell you more about things I like</a></div>
-      <skills :skills="Skills">
-      </skills>
-      <div class="contacts">
-        Drop me a message via email: <a href="mailto:user@site.com">user@site.com</a>
-      </div>
-    </div>
-    <content-for-neo class="tab" v-if="loggedInAs('neo66')">
-    </content-for-neo>
-    <content-for-gf class="tab" v-if="loggedInAs('gf66')">
-    </content-for-gf>
-    <content-for-mom class="tab" v-if="loggedInAs('mom77')">
-    </content-for-mom>
-  </div>
+<template lang="pug">
+.content.tabs
+  .tab.content(v-if='failedToLogin()')
+    .message1 {{User.name}}? Nice to meet you!
+    .message2
+      a(href='#skills') Let me tell you more about things I like
+    skills(:skills='Skills')
+    .contacts
+      | Drop me a message via email:
+      a(href='mailto:user@site.com') user@site.com
+  content-for-neo.tab(v-if="loggedInAs('neo66')")
+  content-for-gf.tab(v-if="loggedInAs('gf66')")
+  content-for-mom.tab(v-if="loggedInAs('mom77')")
 </template>
 
 <style lang="stylus">
