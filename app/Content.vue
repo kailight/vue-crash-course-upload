@@ -9,7 +9,7 @@
       | Drop me a message via email:
       a(href='mailto:user@site.com') user@site.com
   content-for-neo.tab(v-if="loggedInAs('neo66')")
-  content-for-gf.tab(v-if="loggedInAs('gf66')")
+  content-for-gf.tab(v-if="loggedInAs('gf55')")
   content-for-mom.tab(v-if="loggedInAs('mom77')")
 </template>
 

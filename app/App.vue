@@ -1,6 +1,6 @@
 <template lang="pug">
 #div
-  audio#scream(src="/static/scream.wav")
+  audio#scream(src="/static/scream.mp3")
   intro(:User="User" v-if="!User.loggedIn" @login="login()")
   content2(:User="User")
 </template>

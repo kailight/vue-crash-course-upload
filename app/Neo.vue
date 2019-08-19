@@ -75,7 +75,6 @@
 
 
 <script>
-import audio from './audio.js'
 
 export default {
   data() {
