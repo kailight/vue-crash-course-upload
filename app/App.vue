@@ -1,6 +1,6 @@
 <template lang="pug">
 #div
-  intro(:User="User" @login="login()")
+  intro(:User="User" v-if="!User.loggedIn" @login="login()")
   content2(:User="User")
 </template>
 

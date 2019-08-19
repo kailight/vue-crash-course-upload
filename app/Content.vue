@@ -1,5 +1,5 @@
 <template lang="pug">
-.content.tabs
+.content
   .tab.content(v-if='failedToLogin()')
     .message1 {{User.name}}? Nice to meet you!
     .message2
@@ -29,7 +29,7 @@
 .tab
   text-align center
   padding 1rem
-  min-height 10rem
+  min-height 60vh
 </style>
 
 
