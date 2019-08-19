@@ -1,5 +1,6 @@
 <template lang="pug">
 #div
+  audio#scream(src="/static/scream.wav")
   intro(:User="User" v-if="!User.loggedIn" @login="login()")
   content2(:User="User")
 </template>
@@ -24,6 +25,8 @@ a
 import Users from './Users.js'
 import Intro from './Intro.vue'
 import Content from './Content.vue'
+
+
 
 export default {
   components : {
@@ -53,7 +56,11 @@ export default {
           this.User.loggedIn = true
         }
       }
+
     },
+  },
+  mounted() {
+
   }
 }
 </script>

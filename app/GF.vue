@@ -6,7 +6,7 @@ div.background
         p.first Hey kitty
         p Remember that jazz bar we've met for the first time, now seem ages ago...
         p But it is just 3 years this Saturday!
-        p See you there at 6!
+        p See you there this Sat at 6!
         p &nbsp;
         p.right John
     div.image-background

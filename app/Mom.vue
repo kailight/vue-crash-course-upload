@@ -17,7 +17,7 @@ div.background
 .background
   display flex
   /* https://www.friddadorsch.com/wp-content/uploads/2019/02/depth-of-field-hearts-shapes-863913.jpg */
-  background-image url('background-hearts-blurred.png')
+  background-image url('background-hearts.jpg')
   background-repeat no-repeat
   background-position 50%
   background-size cover
