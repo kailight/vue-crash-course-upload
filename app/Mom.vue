@@ -16,21 +16,24 @@ div.background
 <style lang="stylus" scoped>
 .background
   display flex
-  background-image url('background-hearts.jpg')
+  /* https://www.friddadorsch.com/wp-content/uploads/2019/02/depth-of-field-hearts-shapes-863913.jpg */
+  background-image url('background-hearts-blurred.png')
   background-repeat no-repeat
   background-position 50%
   background-size cover
   text-align center
-  height 100vh
+  height 95vh
   .content
+    min-width 80%
+    max-width 90%
     border 0.4rem solid rgba(166,50,90,0.6)
     box-shadow 0.2rem 0.3rem 0.4rem rgba(0,0,0,0.3)
     display inline-flex
     border-radius 0.5rem
     margin-left auto
     margin-right auto
-    height 90%
-    margin-top 2rem
+    margin-top 5rem
+    height 70%
     .image-background
       width 50%
       background rgba(255,255,255,0.3)
@@ -50,8 +53,8 @@ div.background
       color rgba(0,0,0,1)
       .text
         p.first
-          font-size 1.3rem
-        p
+          font-size 2rem
+        p:not(.first)
           text-align left
         p.right
           text-align right
